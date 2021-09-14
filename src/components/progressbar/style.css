@@ -1,0 +1,40 @@
+.wrapper {
+	height: 20px;
+	width: 300px;
+	margin: 15px auto;
+	font-size: 14px;
+	line-height: 20px;
+	position: relative;
+}
+
+.position {
+	float: left;
+	width: 50px;
+	text-align: right;
+	padding-right: 5px;
+}
+
+.length {
+	float: left;
+	width: 50px;
+	padding-left: 5px;
+	text-align: left;
+}
+
+.barBackground {
+	float: left;
+	position: relative;
+	background: #ccc;
+	width: 200px;
+	height: 15px;
+	top: 3px;
+}
+
+.bar {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background: #4caf50;
+	transition: width 0.1s;
+}

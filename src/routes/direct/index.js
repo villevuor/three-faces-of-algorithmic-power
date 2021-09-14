@@ -2,27 +2,20 @@ import { h } from 'preact';
 import {useEffect, useState} from "preact/hooks";
 import style from './style.css';
 
-// Note: `user` comes from the URL, courtesy of our router
+import ProgressBar from '../../components/progressbar';
+
 const DirectPower = () => {
-	const [time, setTime] = useState(Date.now());
-	const [count, setCount] = useState(10);
+	const [seconds, setSeconds] = useState(0);
 
 	useEffect(() => {
-		let timer = setInterval(() => setTime(Date.now()), 1000);
+		let timer = setInterval(() => setSeconds(seconds + 1), 1000);
 		return () => clearInterval(timer);
 	}, []);
 
 	return (
-		<div class={style.profile}>
-			<h1>Suora</h1>
-
-			<div>Current time: {new Date(time).toLocaleString()}</div>
-
-			<p>
-				<button onClick={() => setCount((count) => count + 1)}>Click Me</button>
-				{' '}
-				Clicked {count} times.
-			</p>
+		<div class={style.direct}>
+			<img src="https://via.placeholder.com/300" width="300" height="300" />
+			<ProgressBar length={250} position={seconds} />
 		</div>
 	);
 }
