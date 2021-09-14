@@ -5,15 +5,18 @@ import Header from './header';
 
 // Code-splitting is automated for `routes` directory
 import Home from '../routes/home';
-import Profile from '../routes/profile';
+import DirectPower from '../routes/direct';
+import UndirectPower from '../routes/undirect';
+import HiddenPower from '../routes/hidden';
 
 const App = () => (
 	<div id="app">
 		<Header />
 		<Router>
 			<Home path="/" />
-			<Profile path="/profile/" user="me" />
-			<Profile path="/profile/:user" />
+			<DirectPower path="/direct" />
+			<UndirectPower path="/undirect" />
+			<HiddenPower path="/hidden" />
 		</Router>
 	</div>
 )
