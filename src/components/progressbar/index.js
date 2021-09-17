@@ -1,30 +1,53 @@
-import { h } from 'preact';
-import { Link } from 'preact-router/match';
+import { h, Component } from 'preact';
 import style from './style.css';
 
-const ProgressBar = ({ length, position }) => {
-	const formatSeconds = (seconds) => {
-		let minutes = 0;
+class ProgressBar extends Component {
+	constructor() {
+    super();
 
-		while (seconds >= 60) {
-			minutes += 1;
-			seconds -= 60;
-		}
+		this.state = {
+			position: 0
+		};
+  }
 
-		const padWithZero = n => n < 10 ? "0" + n : n;
-
-		return `${padWithZero(minutes)}:${padWithZero(seconds)}`;
+	getDerivedStateFromProps({ position })	 {
+		this.setState({ position });
 	}
 
-	return (
-		<div class={style.wrapper}>
+	componentDidMount()	{
+		this.interval = setInterval(() => {
+			this.setState({ position: this.state.position + 1 })
+		}, 1000);
+	}
+
+	componentWillUnmount()	{
+		clearInterval(this.interval);
+	}
+
+	render({ length }, { position }) {
+		if (length < 1) return;
+
+		const formatSeconds = (seconds) => {
+			let minutes = 0;
+
+			while (seconds >= 60) {
+				minutes += 1;
+				seconds -= 60;
+			}
+
+			const padWithZero = n => n < 10 ? "0" + n : n;
+
+			return `${padWithZero(minutes)}:${padWithZero(seconds)}`;
+		}
+
+		return <div class={style.wrapper}>
 			<div class={style.position}>{formatSeconds(position)}</div>
 			<div class={style.barBackground}>
-				<div class={style.bar} style={{ width: `${(position / length)}%` }}></div>
+				<div class={style.bar} style={{ width: `${(position / length) * 100}%` }}></div>
 			</div>
 			<div class={style.length}>{formatSeconds(length)}</div>
-		</div>
-	);
+		</div>;
+	}
 }
 
 export default ProgressBar;
