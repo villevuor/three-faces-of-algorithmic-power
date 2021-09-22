@@ -19,6 +19,7 @@ class App extends Component {
 		this.state = {
 			loginNeeded: true,
 			spotifyReady: false,
+			player: undefined,
 			playerState: undefined,
 			playSong: undefined
 		}
@@ -67,6 +68,9 @@ class App extends Component {
 
 			player.addListener('ready', ({ device_id }) => {
 				console.log('Spotify Ready with Device ID', device_id);
+
+				this.setState({ player });
+
 				this.setState({
 					spotifyReady: true,
 					playSong: (song) => play({ player, song, device_id })
@@ -101,7 +105,7 @@ class App extends Component {
 		}
 	}
 
-	render(props, { loginNeeded, spotifyReady, playSong, playerState }) {
+	render(props, { loginNeeded, spotifyReady, playSong, player, playerState }) {
 		return <div id="app">
 			<Helmet title="Demo" />
 			{ loginNeeded
@@ -116,7 +120,8 @@ class App extends Component {
 									<DirectPower
 										path="/direct"
 										playSong={playSong}
-										playerState={playerState} />
+										playerState={playerState}
+										player={player} />
 									<UndirectPower path="/undirect" />
 									<HiddenPower path="/hidden" />
 								</Router>

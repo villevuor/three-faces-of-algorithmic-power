@@ -4,9 +4,6 @@ import style from './style.css';
 
 import ProgressBar from '../../components/progressbar';
 
-// playSong={this.state.playSong}
-// playerState={this.state.playerState} />
-
 class DirectPower extends Component {
 	constructor() {
     super();
@@ -21,6 +18,11 @@ class DirectPower extends Component {
 
 		this.props.playSong(playlist)
 	}
+
+	componentWillUnmount() {
+		this.props.player.pause();
+	}
+
 	render({ playerState, playSong }) {
 		let albumCover = '';
 		let length = 0;
