@@ -1,48 +1,25 @@
-.header {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 56px;
-	padding: 0;
-	background: #4caf50;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-	z-index: 50;
+.listing {
+	max-width: 600px;
+	margin: 20px auto;
 }
 
-.header h1 {
-	float: left;
-	margin: 0;
-	padding: 0 15px;
-	font-size: 24px;
-	line-height: 56px;
-	font-weight: 400;
-	color: #FFF;
+.track {
+	border-bottom: 1px solid #ccc;
+	height: 90px;
+	position: relative;
+	text-align: left;
+	padding: 20px 20px 10px 90px;
 }
 
-.header nav {
-	float: right;
-	font-size: 100%;
-}
+	.track img {
+		position: absolute;
+		top: 10px;
+		left: 0;
+	}
 
-.header nav a {
-	display: inline-block;
-	height: 56px;
-	line-height: 56px;
-	padding: 0 15px;
-	min-width: 50px;
-	text-align: center;
-	background: rgba(255,255,255,0);
-	text-decoration: none;
-	color: #FFF;
-	will-change: background-color;
-}
-
-.header nav a:hover,
-.header nav a:active {
-	background: rgba(0,0,0,0.2);
-}
-
-.header nav a.active {
-	background: rgba(0,0,0,0.4);
-}
+	.track h4, .track .artist {
+		margin: 0 0 10px;
+    overflow: hidden;
+    white-space: nowrap;
+		text-overflow:ellipsis;
+	}

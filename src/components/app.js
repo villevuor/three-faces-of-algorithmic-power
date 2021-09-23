@@ -21,7 +21,9 @@ class App extends Component {
 			spotifyReady: false,
 			player: undefined,
 			playerState: undefined,
-			playSong: undefined
+			playSong: undefined,
+			searchFromAPI: undefined,
+			searchResults: []
 		}
 	}
 
@@ -66,6 +68,23 @@ class App extends Component {
 				});
 			};
 
+			const search = ({ query, player: { _options: { getOAuthToken } } }) => {
+				console.log(query)
+				getOAuthToken(access_token => {
+					fetch(`https://api.spotify.com/v1/search?q=${query}&type=track&limit=50&market=FI`, {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${access_token}`
+						}
+					})
+						.then(response => response.json())
+						.then(searchResults => {
+							this.setState({ searchResults });
+						});
+				});
+			};
+
 			player.addListener('ready', ({ device_id }) => {
 				console.log('Spotify Ready with Device ID', device_id);
 
@@ -73,7 +92,8 @@ class App extends Component {
 
 				this.setState({
 					spotifyReady: true,
-					playSong: (song) => play({ player, song, device_id })
+					playSong: (song) => play({ player, song, device_id }),
+					searchFromAPI: (query) => search({ player, query }),
 				});
 			});
 
@@ -105,7 +125,7 @@ class App extends Component {
 		}
 	}
 
-	render(props, { loginNeeded, spotifyReady, playSong, player, playerState }) {
+	render(_, { loginNeeded, searchFromAPI, searchResults, spotifyReady, playSong, player, playerState }) {
 		return <div id="app">
 			<Helmet title="Demo" />
 			{ loginNeeded
@@ -117,12 +137,21 @@ class App extends Component {
 								<Header />
 								<Router>
 									<Home path="/" />
+
 									<DirectPower
 										path="/direct"
 										playSong={playSong}
 										playerState={playerState}
 										player={player} />
-									<UndirectPower path="/undirect" />
+
+									<UndirectPower
+										path="/undirect"
+										playSong={playSong}
+										playerState={playerState}
+										player={player}
+										searchFromAPI={searchFromAPI}
+										searchResults={searchResults} />
+
 									<HiddenPower path="/hidden" />
 								</Router>
 							</div>

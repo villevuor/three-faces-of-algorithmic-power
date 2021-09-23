@@ -1,28 +1,35 @@
 import { h, Component } from 'preact';
+
 import style from './style.css';
+
+import Listing from '../../components/listing';
 
 class UndirectPower extends Component {
   state = {
-		value: ''
+		query: ''
 	};
 
   onSubmit = e => {
-    alert("Submitted a todo");
-    e.preventDefault();
+		e.preventDefault();
+		this.props.searchFromAPI(this.state.query)
   }
 
   onInput = e => {
     const { value } = e.target;
-    this.setState({ value })
+    this.setState({ query: value })
   }
 
-  render(_, { value }) {
+  render({ searchResults }, { query }) {
+    if (searchResults.tracks && searchResults.tracks.items && searchResults.tracks.items.length > 0) {
+      searchResults.tracks.items.map(item => console.log(item))
+    }
     return (
 			<div class={style.undirect}>
 				<form onSubmit={this.onSubmit}>
-					<input type="text" value={value} onInput={this.onInput} placeholder="Kirjoita hakusana..." />
+					<input type="text" value={query} onInput={this.onInput} placeholder="Kirjoita hakusana..." />
 					<button type="submit">Hae</button>
 				</form>
+        <Listing tracks={searchResults.tracks} />
 			</div>
     );
   }
