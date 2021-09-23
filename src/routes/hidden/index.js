@@ -4,6 +4,7 @@ import style from './style.css';
 
 import Listing from '../../components/listing';
 import PlayerView from '../../components/playerview';
+import Sticky from '../../components/sticky';
 
 const TagSelector = ({ selectedTags, toggleTag }) => {
   const tags = ['Dynaaminen', 'Rento', 'Värikäs', 'Tuore', 'Tyylikäs'];
@@ -46,6 +47,13 @@ class HiddenPower extends Component {
         <div class={style.right}>
           <PlayerView playerState={playerState} />
         </div>
+        <Sticky>
+          <p>Piilevä valta (kolmas ulottuvuus). Tämä on vielä eniten kesken.</p>
+          <p>Aluksi ajatuksena oli hyödyntää tarkkailuvallan muotoja, eli kuunteluhistoria vaikuttaisi siihen, mitä käyttäjälle suositellaan. Ongelma voi kuitenkin olla, että historiaa ei ole kovin paljoa tämän sessarin ajalta.</p>
+          <p>Nyt vaihtoehtona on vähän tällaiset hähmäiset adjektiivit, joiden perusteella algoritmi tekee suosituksen. Noita adjektiiveja voisi olla enemmänkin, nyt muutama esimerkin vuoksi.</p>
+          <p>(Tällä hetkellä hakutulokset on lähinnä satunnaisia, älä ihmettele)</p>
+          <p>Hakutulosten hakeminen voisi ehkä kestää 1-2 sek / näyttää jonkun hakuanimaation. Se voisi tuoda tunnetta, että algoritmi "laskee" jotain</p>
+			</Sticky>
 			</div>
     );
   }

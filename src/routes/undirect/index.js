@@ -4,6 +4,7 @@ import style from './style.css';
 
 import Listing from '../../components/listing';
 import PlayerView from '../../components/playerview';
+import Sticky from '../../components/sticky';
 
 class UndirectPower extends Component {
   state = {
@@ -33,6 +34,10 @@ class UndirectPower extends Component {
         <div class={style.right}>
           <PlayerView playerState={playerState} />
         </div>
+        <Sticky>
+          <p>Epäsuora valta. Perinteinen hakunäkymä. Ajatuksena, että algoritmin valta ilmenee hakutulosten kevyenä manipulointina</p>
+          <p>Tyhjä hakupalkki voi olla vähän lamauttava, niin tähän voisi ehkä antaa jotain esimerkkejä, mitä hakea</p>
+			</Sticky>
 			</div>
     );
   }

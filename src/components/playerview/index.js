@@ -23,7 +23,7 @@ const PlayerView = ({ playerState, width }) => {
   const length = Math.round(track.duration_ms / 1000);
   const position = Math.round(playerState.position / 1000);
 
-	return <div class={style.direct} style={{ maxWidth }}>
+	return <div class={style.player} style={{ maxWidth }}>
     <img src={track.album.images[2].url} width={maxWidth} height={maxWidth} />
     <h3>{track.name}</h3>
     <p>{track.artists.map(artist => artist.name).join(', ')}</p>

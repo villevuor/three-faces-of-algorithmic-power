@@ -1,3 +1,8 @@
+.player {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .defaultCover {
   background-color: #dcdcdc;
   position: relative;

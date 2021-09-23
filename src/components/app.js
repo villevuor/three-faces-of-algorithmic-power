@@ -10,6 +10,8 @@ import DirectPower from '../routes/direct';
 import UndirectPower from '../routes/undirect';
 import HiddenPower from '../routes/hidden';
 
+const Sticky = ({ children }) => <p class={style.sticky}>sdf</p>
+
 const Login = () => <p style={{ textAlign: 'center', marginTop: 50}}>
 	<a href="/auth/login">Login</a>
 </p>
