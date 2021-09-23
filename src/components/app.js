@@ -10,7 +10,9 @@ import DirectPower from '../routes/direct';
 import UndirectPower from '../routes/undirect';
 import HiddenPower from '../routes/hidden';
 
-const Login = () => <a href="/auth/login" >Login with Spotify</a>
+const Login = () => <p style={{ textAlign: 'center', marginTop: 50}}>
+	<a href="/auth/login" >Login with Spotify</a>
+</p>
 
 class App extends Component {
 	constructor() {
@@ -132,7 +134,7 @@ class App extends Component {
 				? <Login />
 				: <div>
 						{ !spotifyReady
-						? <p>Loading...</p>
+						? <p style={{ textAlign: 'center', marginTop: 50}}>Loading...</p>
 						: <div>
 								<Header />
 								<Router>

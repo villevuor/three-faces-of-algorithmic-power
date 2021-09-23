@@ -20,6 +20,10 @@
 	color: #FFF;
 }
 
+.header img {
+	margin: 7px 15px;
+}
+
 .header nav {
 	float: right;
 	font-size: 100%;
