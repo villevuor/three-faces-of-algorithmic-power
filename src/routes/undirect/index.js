@@ -3,6 +3,7 @@ import { h, Component } from 'preact';
 import style from './style.css';
 
 import Listing from '../../components/listing';
+import PlayerView from '../../components/playerview';
 
 class UndirectPower extends Component {
   state = {
@@ -19,17 +20,22 @@ class UndirectPower extends Component {
     this.setState({ query: value })
   }
 
-  render({ searchResults }, { query }) {
+  render({ searchResults, playerState, playSong }, { query }) {
     if (searchResults.tracks && searchResults.tracks.items && searchResults.tracks.items.length > 0) {
       searchResults.tracks.items.map(item => console.log(item))
     }
     return (
 			<div class={style.undirect}>
-				<form onSubmit={this.onSubmit}>
-					<input type="text" value={query} onInput={this.onInput} placeholder="Kirjoita hakusana..." />
-					<button type="submit">Hae</button>
-				</form>
-        <Listing tracks={searchResults.tracks} />
+        <div class={style.left}>
+          <form onSubmit={this.onSubmit}>
+            <input type="text" value={query} onInput={this.onInput} placeholder="Kirjoita hakusana..." />
+            <button type="submit">Hae</button>
+          </form>
+          <Listing tracks={searchResults.tracks} playSong={playSong} />
+        </div>
+        <div class={style.right}>
+          <PlayerView playerState={playerState} />
+        </div>
 			</div>
     );
   }

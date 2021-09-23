@@ -2,9 +2,19 @@
 	margin: 80px auto 20px;
 	padding: 15px;
 	min-height: 100%;
-	width: 100%;
-	text-align: center;
+	max-width: 1000px;
 }
+
+	.undirect .left {
+		width: 69%;
+		float: left;
+	}
+
+	.undirect .right {
+		width: 29%;
+		margin-left: 2%;
+		float: left;
+	}
 
 .undirect input {
 	height: 40px;
@@ -14,12 +24,13 @@
 	border: 1px solid #c3c3c3;
 	position: relative;
 	top: 2px;
-	width: 400px;
+	width: calc(100% - 80px);
 }
 
 .undirect button {
 	height: 40px;
 	padding: 0 15px;
+	width: 70px;
 	margin-left: 10px;
 	background: #306BAC;
 	border: none;

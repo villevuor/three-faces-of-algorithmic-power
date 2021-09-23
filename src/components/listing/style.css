@@ -1,5 +1,4 @@
 .listing {
-	max-width: 600px;
 	margin: 20px auto;
 }
 
@@ -9,6 +8,7 @@
 	position: relative;
 	text-align: left;
 	padding: 20px 20px 10px 90px;
+	cursor: pointer;
 }
 
 	.track img {

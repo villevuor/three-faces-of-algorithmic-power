@@ -55,7 +55,7 @@ class App extends Component {
 			});
 
 			const play = ({ song, device_id, player: { _options: { getOAuthToken } } }) => {
-				const uris = (typeof song === 'String' ? [song] : song);
+				const uris = (typeof song === 'string' ? [song] : song);
 				getOAuthToken(access_token => {
 					fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
 						method: 'PUT',
