@@ -21,9 +21,6 @@ class UndirectPower extends Component {
   }
 
   render({ searchResults, playerState, playSong }, { query }) {
-    if (searchResults.tracks && searchResults.tracks.items && searchResults.tracks.items.length > 0) {
-      searchResults.tracks.items.map(item => console.log(item))
-    }
     return (
 			<div class={style.undirect}>
         <div class={style.left}>

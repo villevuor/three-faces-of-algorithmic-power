@@ -1,5 +1,32 @@
-.profile {
-	padding: 56px 20px;
+.hidden {
+	margin: 80px auto 20px;
+	padding: 15px;
 	min-height: 100%;
-	width: 100%;
+	max-width: 1000px;
 }
+
+	.hidden .left {
+		width: 69%;
+		float: left;
+	}
+
+	.hidden .right {
+		width: 29%;
+		margin-left: 2%;
+		float: left;
+	}
+
+.tag, .selectedTag {
+	background: #306BAC;
+	color: #fff;
+	display: inline-block;
+	padding: 5px 10px;
+	transition: opacity 0.25s ease-in-out;
+	opacity: 0.5;
+	margin: 0 5px 5px 0;
+	cursor: pointer;
+}
+
+	.tag:hover, .selectedTag {
+		opacity: 1;
+	}

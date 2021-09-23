@@ -1,30 +1,54 @@
-import { h } from 'preact';
-import {useEffect, useState} from "preact/hooks";
+import { h, Component } from 'preact';
+
 import style from './style.css';
 
-// Note: `user` comes from the URL, courtesy of our router
-const HiddenPower = () => {
-	const [time, setTime] = useState(Date.now());
-	const [count, setCount] = useState(10);
+import Listing from '../../components/listing';
+import PlayerView from '../../components/playerview';
 
-	useEffect(() => {
-		let timer = setInterval(() => setTime(Date.now()), 1000);
-		return () => clearInterval(timer);
-	}, []);
+const TagSelector = ({ selectedTags, toggleTag }) => {
+  const tags = ['Dynaaminen', 'Rento', 'Värikäs', 'Tuore', 'Tyylikäs'];
 
-	return (
-		<div class={style.profile}>
-			<h1>Direct</h1>
+  return <div>
+    {tags.map(tag => <a class={(selectedTags.includes(tag) ? style.selectedTag : style.tag)} onClick={() => toggleTag(tag)}>{tag}</a>)}
+  </div>;
+}
 
-			<div>Current time: {new Date(time).toLocaleString()}</div>
+class HiddenPower extends Component {
+  state = {
+		selectedTags: []
+	};
 
-			<p>
-				<button onClick={() => setCount((count) => count + 1)}>Click Me</button>
-				{' '}
-				Clicked {count} times.
-			</p>
-		</div>
-	);
+  toggleTag = (tag) => {
+    let { selectedTags } = this.state;
+
+    if (selectedTags.includes(tag)) {
+      selectedTags = selectedTags.filter(t => t !== tag);
+    } else {
+      selectedTags.push(tag);
+    }
+
+    this.setState({ selectedTags });
+
+    const queries = ['abba', 'eppu normaali', 'bezos', 'pave maijanen', 'ursus factory'];
+    this.props.searchFromAPI(queries[Math.floor(Math.random() * queries.length)])
+  }
+
+  render({ searchResults, playerState, playSong }, { selectedTags }) {
+    console.log(selectedTags);
+    return (
+			<div class={style.hidden}>
+        <div class={style.left}>
+          <h2>Minkälainen musiikki sinua kiinnostaa?</h2>
+          <TagSelector selectedTags={selectedTags} toggleTag={(t) => this.toggleTag(t)} />
+          <h2>Valintojesi perusteella sinulle suositeltua musiikkia</h2>
+          <Listing tracks={searchResults.tracks} playSong={playSong} />
+        </div>
+        <div class={style.right}>
+          <PlayerView playerState={playerState} />
+        </div>
+			</div>
+    );
+  }
 }
 
 export default HiddenPower;

@@ -11,7 +11,7 @@ import UndirectPower from '../routes/undirect';
 import HiddenPower from '../routes/hidden';
 
 const Login = () => <p style={{ textAlign: 'center', marginTop: 50}}>
-	<a href="/auth/login" >Login with Spotify</a>
+	<a href="/auth/login">Login</a>
 </p>
 
 class App extends Component {
@@ -129,7 +129,7 @@ class App extends Component {
 
 	render(_, { loginNeeded, searchFromAPI, searchResults, spotifyReady, playSong, player, playerState }) {
 		return <div id="app">
-			<Helmet title="Demo" />
+			<Helmet title="Musiikkisoitin" />
 			{ loginNeeded
 				? <Login />
 				: <div>
@@ -154,7 +154,14 @@ class App extends Component {
 										searchFromAPI={searchFromAPI}
 										searchResults={searchResults} />
 
-									<HiddenPower path="/hidden" />
+									<HiddenPower
+										path="/hidden"
+										playSong={playSong}
+										playerState={playerState}
+										player={player}
+										searchFromAPI={searchFromAPI}
+										searchResults={searchResults} />
+
 								</Router>
 							</div>
 						}

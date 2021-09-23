@@ -8,6 +8,7 @@ const PlayerView = ({ playerState, width }) => {
   const maxWidth = width || 300;
 
   if (
+    playerState === null ||
     typeof playerState === 'undefined' ||
     typeof playerState.track_window === 'undefined' ||
     typeof playerState.track_window.current_track === 'undefined'

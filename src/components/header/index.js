@@ -6,9 +6,9 @@ const Header = () => (
 	<header class={style.header}>
 		<img src="../style/music.svg" width="40" height="40" />
 		<nav>
-			<Link activeClassName={style.active} href="/direct">Eka</Link>
-			<Link activeClassName={style.active} href="/undirect">Toka</Link>
-			<Link activeClassName={style.active} href="/hidden">Kolmas</Link>
+			<Link activeClassName={style.active} href="/direct">Suora</Link>
+			<Link activeClassName={style.active} href="/undirect">Epäsuora</Link>
+			<Link activeClassName={style.active} href="/hidden">Piilevä</Link>
 		</nav>
 	</header>
 );
