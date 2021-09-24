@@ -7,11 +7,14 @@ import style from './style.css';
 const PlayerView = ({ playerState, width }) => {
   const maxWidth = width || 300;
 
+  console.log(playerState);
+
   if (
     playerState === null ||
     typeof playerState === 'undefined' ||
     typeof playerState.track_window === 'undefined' ||
-    typeof playerState.track_window.current_track === 'undefined'
+    typeof playerState.track_window.current_track === 'undefined' ||
+    playerState.paused
   ) {
     return <div class={style.defaultCover} style={{ width: maxWidth, height: maxWidth }}></div>;
   }
