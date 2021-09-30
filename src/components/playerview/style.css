@@ -3,6 +3,14 @@
   margin: 0 auto;
 }
 
+.title {
+  margin-bottom: 0;
+}
+
+.artist {
+  margin-top: 0;
+}
+
 .defaultCover {
   background-color: #dcdcdc;
   position: relative;

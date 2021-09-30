@@ -5,3 +5,18 @@
 	width: 600px;
 	text-align: center;
 }
+
+.nextSong {
+	height: 40px;
+	padding: 0 15px;
+	margin-top: 20px;
+	background: #ccc;
+	border: none;
+	color: #00204A;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: transform 0.15s ease-in-out;
+	margin-top: 2em;
+}

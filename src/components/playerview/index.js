@@ -23,13 +23,13 @@ const PlayerView = ({ playerState, width, forceLength, hideTime }) => {
 
   const track = playerState.track_window.current_track;
 
-  const length = forceLength || Math.round(track.duration_ms / 1000);
-  const position = Math.round(playerState.position / 1000);
+  const length = forceLength || Math.floor(track.duration_ms / 1000);
+  const position = Math.floor(playerState.position / 1000);
 
 	return <div class={style.player} style={{ maxWidth }}>
     <img src={track.album.images[2].url} width={maxWidth} height={maxWidth} />
-    <h3>{track.name}</h3>
-    <p>{track.artists.map(artist => artist.name).join(', ')}</p>
+    <h3 class={ style.title }>{track.name}</h3>
+    <p class={ style.artist}>{track.artists.map(artist => artist.name).join(', ')}</p>
     <ProgressBar length={length} position={position} hideTime={hideTime} />
   </div>;
 };

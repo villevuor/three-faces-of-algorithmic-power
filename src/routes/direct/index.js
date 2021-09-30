@@ -4,6 +4,7 @@ import shuffle from '../../helpers';
 import style from './style.css';
 
 import PlayerView from '../../components/playerview';
+import PlayList from '../../components/playlist';
 import Sticky from '../../components/sticky';
 
 const sampleLength = 25; // sec
@@ -12,6 +13,20 @@ class DirectPower extends Component {
 	constructor() {
     super();
   }
+
+	playSongWithTimeout(tracks) {
+		clearTimeout(this.timer);
+
+		if (tracks) {
+			this.props.playSong(tracks);
+		} else {
+			this.props.player.nextTrack();
+		}
+
+		this.timer = setTimeout(() => {
+			this.playSongWithTimeout();
+		}, sampleLength * 1000);
+	}
 
 	componentDidMount()	{
 		const playlist = [
@@ -77,25 +92,23 @@ class DirectPower extends Component {
 			'spotify:track:7EkWy2cj5jchNPtoTUgjdd'
 		];
 
-		this.props.playSong(shuffle(playlist));
-
-		this.timer = setInterval(() => {
-			this.props.player.nextTrack();
-		}, sampleLength * 1000);
+		this.playSongWithTimeout(shuffle(playlist));
 	}
 
 	componentWillUnmount() {
-		clearInterval(this.timer);
+		clearTimeout(this.timer);
 		this.props.player.pause();
 	}
 
-	render({ playerState }) {
+	render({ playerState, player }) {
 		return <div class={style.direct}>
 			<PlayerView playerState={playerState} forceLength={sampleLength} hideTime={true} />
-			<Sticky>
+			<PlayList playerState={playerState} player={player} afterClick={() => this.playSongWithTimeout()} />
+			<button class={ style.nextSong } onClick={() => this.playSongWithTimeout()}>Seuraava ►</button>
+			{/*<Sticky>
 				<p>Suora valta. Tässä ajatuksena, että järjestelmä vaan päättää mitä musiikkia soitetaan. Käytännössä "algoritmi" = joku valmis (itse tehty) soittolista.</p>
 				<p>Järjestelmä voisi soittaa jokaisesta 30-45 sek, tai sitten käyttäjälle voidaan antaa käyttöön next-painike. (Käytännön syistä voisi olla kiva, että käyttäjä ehtisi kuunnella edes muutamaa eri kappaletta.)</p>
-			</Sticky>
+			</Sticky>*/}
 		</div>;
 	}
 }

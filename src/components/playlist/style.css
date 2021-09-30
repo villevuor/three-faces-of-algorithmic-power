@@ -1,0 +1,52 @@
+.addButton {
+	height: 40px;
+	padding: 0 15px;
+	margin-left: 10px;
+	background: #005792;
+	border: none;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: transform 0.15s ease-in-out;
+	margin-top: 2em;
+}
+
+	.addButton:hover {
+		transform: scale(1.05);
+	}
+
+.playlist {
+	position: absolute;
+	width: 350px;
+	right: 50px;
+	bottom: 40px;
+	background: #005792;
+	color: #fff;
+	text-align: left;
+	padding: 5px 20px 15px;
+}
+
+.track {
+	margin: 10px 0;
+}
+
+	.track:first-of-type {
+		border-top: none;
+	}
+
+	.track img {
+		float: left;
+		margin-right: 10px;
+	}
+
+	.track h4 {
+		font-weight: normal;
+		line-height: 35px;
+		font-size: 0.85em;
+		margin: 0;
+		white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+	}

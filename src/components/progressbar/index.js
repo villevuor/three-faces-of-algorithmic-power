@@ -45,7 +45,12 @@ class ProgressBar extends Component {
 		return <div class={style.wrapper}>
 			{showTime ? <div class={style.position}>{formatSeconds(position)}</div> : null }
 			<div class={style.barBackground}>
-				<div class={style.bar} style={{ width: `${(position / length) * 100}%` }}></div>
+				<div
+					class={style.bar}
+					style={{
+						width: (position < 1 ? 0 : `${((position) / (length - 2)) * 100}%`),
+						transition: (position < 1 ? 'none' : 'width 1s linear')
+					}}></div>
 			</div>
 			{showTime ? <div class={style.length}>{formatSeconds(length)}</div> : null }
 		</div>;
