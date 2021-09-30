@@ -30,10 +30,18 @@
 	top: 3px;
 }
 
+.barBackground:first-child {
+	float: none;
+	margin: 0 auto;
+	width: 250px;
+}
+
 .bar {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	background: #306BAC;
+	max-width: 100%;
+	transition: width 1s linear;
 }

@@ -10,7 +10,7 @@ class ProgressBar extends Component {
 		};
   }
 
-	getDerivedStateFromProps({ position })	 {
+	componentWillReceiveProps({ position })	 {
 		this.setState({ position });
 	}
 
@@ -24,7 +24,7 @@ class ProgressBar extends Component {
 		clearInterval(this.interval);
 	}
 
-	render({ length }, { position }) {
+	render({ length, hideTime }, { position }) {
 		if (length < 1) return;
 
 		const formatSeconds = (seconds) => {
@@ -40,12 +40,14 @@ class ProgressBar extends Component {
 			return `${padWithZero(minutes)}:${padWithZero(seconds)}`;
 		}
 
+		const showTime = !(hideTime || false);
+
 		return <div class={style.wrapper}>
-			<div class={style.position}>{formatSeconds(position)}</div>
+			{showTime ? <div class={style.position}>{formatSeconds(position)}</div> : null }
 			<div class={style.barBackground}>
 				<div class={style.bar} style={{ width: `${(position / length) * 100}%` }}></div>
 			</div>
-			<div class={style.length}>{formatSeconds(length)}</div>
+			{showTime ? <div class={style.length}>{formatSeconds(length)}</div> : null }
 		</div>;
 	}
 }
