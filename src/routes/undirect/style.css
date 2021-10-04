@@ -16,6 +16,10 @@
 		float: left;
 	}
 
+	.undirect .right .addButton {
+		margin: 0 auto;
+	}
+
 .undirect input {
 	height: 40px;
 	line-height: 40px;
@@ -27,7 +31,7 @@
 	width: calc(100% - 80px);
 }
 
-.undirect button {
+.searchButton {
 	height: 40px;
 	padding: 0 15px;
 	width: 70px;

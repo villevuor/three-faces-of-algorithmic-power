@@ -35,7 +35,6 @@ class HiddenPower extends Component {
   }
 
   render({ searchResults, playerState, playSong }, { selectedTags }) {
-    console.log(selectedTags);
     return (
 			<div class={style.hidden}>
         <div class={style.left}>

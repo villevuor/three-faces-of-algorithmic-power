@@ -7,8 +7,6 @@ import style from './style.css';
 const PlayerView = ({ playerState, width, forceLength, hideTime }) => {
   const maxWidth = width || 300;
 
-  console.log(playerState);
-
   if (
     playerState === null ||
     typeof playerState === 'undefined' ||
@@ -18,8 +16,6 @@ const PlayerView = ({ playerState, width, forceLength, hideTime }) => {
   ) {
     return <div class={style.defaultCover} style={{ width: maxWidth, height: maxWidth }}></div>;
   }
-
-  console.log()
 
   const track = playerState.track_window.current_track;
 

@@ -72,8 +72,7 @@ class App extends Component {
 				});
 			};
 
-			const search = ({ query, player: { _options: { getOAuthToken } } }) => {
-				console.log(query)
+			const search = ({ query, player: { _options: { getOAuthToken } } }, sortFunction) => {
 				getOAuthToken(access_token => {
 					fetch(`https://api.spotify.com/v1/search?q=${query}&type=track&limit=50&market=FI`, {
 						method: 'GET',
@@ -84,6 +83,10 @@ class App extends Component {
 					})
 						.then(response => response.json())
 						.then(searchResults => {
+							if (sortFunction) {
+								searchResults.tracks.items = sortFunction(searchResults.tracks.items);
+							}
+
 							this.setState({ searchResults });
 						});
 				});
@@ -97,7 +100,7 @@ class App extends Component {
 				this.setState({
 					spotifyReady: true,
 					playSong: (song) => play({ player, song, device_id }),
-					searchFromAPI: (query) => search({ player, query }),
+					searchFromAPI: (query, sortFunction = null) => search({ player, query }, sortFunction),
 				});
 			});
 

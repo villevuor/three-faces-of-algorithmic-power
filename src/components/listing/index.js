@@ -12,8 +12,8 @@ const Track = ({ track, playSong }) => (
 
 const Listing = ({ tracks, playSong }) => (
 	<div class={ style.listing }>
-		{(tracks && tracks.items && tracks.items.length > 0
-			? tracks.items.map(item => <Track track={item} playSong={playSong} />)
+		{(tracks && tracks.length > 0
+			? tracks.map(item => <Track track={item} playSong={playSong} />)
 			: null)}
 	</div>
 );

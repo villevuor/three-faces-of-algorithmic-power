@@ -1,7 +1,8 @@
 import { Component } from 'preact';
 import { useEffect, useState } from "preact/hooks";
-import shuffle from '../../helpers';
 import style from './style.css';
+
+import { shuffle} from '../../algorithms';
 
 import PlayerView from '../../components/playerview';
 import PlayList from '../../components/playlist';
@@ -105,10 +106,6 @@ class DirectPower extends Component {
 			<PlayerView playerState={playerState} forceLength={sampleLength} hideTime={true} />
 			<PlayList playerState={playerState} player={player} afterClick={() => this.playSongWithTimeout()} />
 			<button class={ style.nextSong } onClick={() => this.playSongWithTimeout()}>Seuraava ►</button>
-			{/*<Sticky>
-				<p>Suora valta. Tässä ajatuksena, että järjestelmä vaan päättää mitä musiikkia soitetaan. Käytännössä "algoritmi" = joku valmis (itse tehty) soittolista.</p>
-				<p>Järjestelmä voisi soittaa jokaisesta 30-45 sek, tai sitten käyttäjälle voidaan antaa käyttöön next-painike. (Käytännön syistä voisi olla kiva, että käyttäjä ehtisi kuunnella edes muutamaa eri kappaletta.)</p>
-			</Sticky>*/}
 		</div>;
 	}
 }
