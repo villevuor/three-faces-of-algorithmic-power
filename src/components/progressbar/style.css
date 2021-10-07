@@ -25,7 +25,7 @@
 	float: left;
 	position: relative;
 	background: #ccc;
-	width: 200px;
+	width: 180px;
 	height: 15px;
 	top: 3px;
 }
@@ -33,7 +33,7 @@
 .barBackground:first-child {
 	float: none;
 	margin: 0 auto;
-	width: 250px;
+	width: 230px;
 }
 
 .bar {

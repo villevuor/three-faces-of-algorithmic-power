@@ -5,7 +5,7 @@ import ProgressBar from '../progressbar';
 import style from './style.css';
 
 const PlayerView = ({ playerState, width, forceLength, hideTime }) => {
-  const maxWidth = width || 300;
+  const maxWidth = width || 350;
 
   if (
     playerState === null ||

@@ -3,6 +3,11 @@
   margin: 0 auto;
 }
 
+  .player > img {
+    max-width: 100%;
+    height: auto;
+  }
+
 .title {
   margin-bottom: 0;
 }
