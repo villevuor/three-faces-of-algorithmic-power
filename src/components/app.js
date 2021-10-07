@@ -92,6 +92,27 @@ class App extends Component {
 				});
 			};
 
+			const get = ({ ids, player: { _options: { getOAuthToken } } }, sortFunction) => {
+				getOAuthToken(access_token => {
+					fetch(`https://api.spotify.com/v1/tracks?ids=${ids.join(',')}&market=FI`, {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${access_token}`
+						}
+					})
+						.then(response => response.json())
+						.then(searchResults => {
+							console.log(searchResults);
+							if (sortFunction) {
+								searchResults.tracks = sortFunction(searchResults.tracks);
+							}
+
+							this.setState({ searchResults });
+						});
+				});
+			};
+
 			player.addListener('ready', ({ device_id }) => {
 				console.log('Spotify Ready with Device ID', device_id);
 
@@ -101,6 +122,7 @@ class App extends Component {
 					spotifyReady: true,
 					playSong: (song) => play({ player, song, device_id }),
 					searchFromAPI: (query, sortFunction = null) => search({ player, query }, sortFunction),
+					getTracks: (ids, sortFunction = null) => get({ player, ids }, sortFunction),
 				});
 			});
 
@@ -132,7 +154,7 @@ class App extends Component {
 		}
 	}
 
-	render(_, { loginNeeded, searchFromAPI, searchResults, spotifyReady, playSong, player, playerState }) {
+	render(_, { loginNeeded, searchFromAPI, searchResults, spotifyReady, playSong, player, playerState, getTracks }) {
 		return <div id="app">
 			<Helmet title="Musiikkisoitin" />
 			{ loginNeeded
@@ -164,7 +186,7 @@ class App extends Component {
 										playSong={playSong}
 										playerState={playerState}
 										player={player}
-										searchFromAPI={searchFromAPI}
+										getTracks={getTracks}
 										searchResults={searchResults} />
 
 								</Router>

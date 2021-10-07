@@ -4,19 +4,35 @@ import style from './style.css';
 
 import Listing from '../../components/listing';
 import PlayerView from '../../components/playerview';
-import Sticky from '../../components/sticky';
+import PlayList from '../../components/playlist';
+import Loader from '../../components/loader';
+
+import { shuffle, mostSuitableByTags, randomIntFromInterval } from '../../algorithms';
+
+import songs from './songs';
 
 const TagSelector = ({ selectedTags, toggleTag }) => {
-  const tags = ['Dynaaminen', 'Rento', 'Värikäs', 'Tuore', 'Tyylikäs'];
+  const tags = [
+    { key: 'dynamic', label: 'Dynaaminen' },
+    { key: 'chill', label: 'Rento' },
+    { key: 'colorful', label: 'Värikäs' },
+    { key: 'stylish', label: 'Tyylikäs' },
+    { key: 'playful', label: 'Leikkisä' },
+    { key: 'inspiring', label: 'Inspiroiva' },
+    { key: 'fresh', label: 'Tuore' },
+    { key: 'fascinating', label: 'Kiehtova' },
+    { key: 'oldbutgold', label: 'Ikivihreä' }
+  ];
 
   return <div>
-    {tags.map(tag => <a class={(selectedTags.includes(tag) ? style.selectedTag : style.tag)} onClick={() => toggleTag(tag)}>{tag}</a>)}
+    {tags.map(tag => <a class={(selectedTags.includes(tag.key) ? style.selectedTag : style.tag)} onClick={() => toggleTag(tag.key)}>{tag.label}</a>)}
   </div>;
 }
 
 class HiddenPower extends Component {
   state = {
-		selectedTags: []
+		selectedTags: [],
+    loading: false
 	};
 
   toggleTag = (tag) => {
@@ -30,29 +46,33 @@ class HiddenPower extends Component {
 
     this.setState({ selectedTags });
 
-    const queries = ['abba', 'eppu normaali', 'bezos', 'pave maijanen', 'ursus factory'];
-    this.props.searchFromAPI(queries[Math.floor(Math.random() * queries.length)])
+    if (selectedTags.length >= 2) {
+      const tracksToSearch = mostSuitableByTags(songs, selectedTags).map(t => t.id);
+      this.props.getTracks(tracksToSearch, shuffle);
+
+      this.setState({ loading: true });
+      this.timeOut = setTimeout(() => {
+        this.setState({ loading: false });
+      }, randomIntFromInterval(1500, 5000));
+    }
   }
 
-  render({ searchResults, playerState, playSong }, { selectedTags }) {
+  render({ searchResults, playerState, playSong, player }, { selectedTags, loading }) {
     return (
 			<div class={style.hidden}>
         <div class={style.left}>
           <h2>Minkälainen musiikki sinua kiinnostaa?</h2>
+          <p>Valitse vähintään kaksi eri avainsanaa.</p>
           <TagSelector selectedTags={selectedTags} toggleTag={(t) => this.toggleTag(t)} />
           <h2>Valintojesi perusteella sinulle suositeltua musiikkia</h2>
-          <Listing tracks={searchResults.tracks} playSong={playSong} />
+          <div style={{ position: 'relative' }}>
+            {loading ? <Loader /> : <Listing tracks={searchResults.tracks} playSong={playSong} />}
+          </div>
         </div>
         <div class={style.right}>
           <PlayerView playerState={playerState} />
+          <PlayList playerState={playerState} player={player} />
         </div>
-        <Sticky>
-          <p>Piilevä valta (kolmas ulottuvuus). Tämä on vielä eniten kesken.</p>
-          <p>Aluksi ajatuksena oli hyödyntää tarkkailuvallan muotoja, eli kuunteluhistoria vaikuttaisi siihen, mitä käyttäjälle suositellaan. Ongelma voi kuitenkin olla, että historiaa ei ole kovin paljoa tämän sessarin ajalta.</p>
-          <p>Nyt vaihtoehtona on vähän tällaiset hähmäiset adjektiivit, joiden perusteella algoritmi tekee suosituksen. Noita adjektiiveja voisi olla enemmänkin, nyt muutama esimerkin vuoksi.</p>
-          <p>(Tällä hetkellä hakutulokset on lähinnä satunnaisia, älä ihmettele)</p>
-          <p>Hakutulosten hakeminen voisi ehkä kestää 1-2 sek / näyttää jonkun hakuanimaation. Se voisi tuoda tunnetta, että algoritmi "laskee" jotain</p>
-			</Sticky>
 			</div>
     );
   }

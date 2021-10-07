@@ -1,0 +1,39 @@
+.loaderWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  min-height: 200px;
+  background: #FAFAFA;
+}
+
+.loader {
+  position: absolute;
+  display: inline-block;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 80px;
+}
+
+.loader:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #005792;
+  border-color: #005792 transparent #005792 transparent;
+  animation: loader 1.2s ease-in-out infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
