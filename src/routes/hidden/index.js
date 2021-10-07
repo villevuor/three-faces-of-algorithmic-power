@@ -62,10 +62,10 @@ class HiddenPower extends Component {
 			<div class={style.hidden}>
         <div class={style.left}>
           <h2>Minkälainen musiikki sinua kiinnostaa?</h2>
-          <p>Valitse vähintään kaksi eri avainsanaa.</p>
           <TagSelector selectedTags={selectedTags} toggleTag={(t) => this.toggleTag(t)} />
-          <h2>Valintojesi perusteella sinulle suositeltua musiikkia</h2>
+          <h2 style={{ marginTop: '2em' }}>Valintojesi perusteella sinulle suositeltua musiikkia</h2>
           <div style={{ position: 'relative' }}>
+            {!searchResults.tracks ? <p>Valitse vähintään kaksi eri avainsanaa.</p> : null }
             {loading ? <Loader /> : <Listing tracks={searchResults.tracks} playSong={playSong} />}
           </div>
         </div>
