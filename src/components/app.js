@@ -168,13 +168,13 @@ class App extends Component {
 									<Home path="/" />
 
 									<DirectPower
-										path="/direct"
+										path="/test-24FjShb"
 										playSong={playSong}
 										playerState={playerState}
 										player={player} />
 
 									<UndirectPower
-										path="/undirect"
+										path="/test-SdJPNgT"
 										playSong={playSong}
 										playerState={playerState}
 										player={player}
@@ -182,7 +182,7 @@ class App extends Component {
 										searchResults={searchResults} />
 
 									<HiddenPower
-										path="/hidden"
+										path="/test-A5Ccg9x"
 										playSong={playSong}
 										playerState={playerState}
 										player={player}

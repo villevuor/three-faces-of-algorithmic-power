@@ -62,4 +62,4 @@ const mostSuitableByTags = (tracks, tags) => {
   return top20;
 }
 
-export { shuffle, mostPopularWithSmallVariance, mostSuitableByTags, randomIntFromInterval };
+export { shuffle, mostPopularWithSmallVariance, mostSuitableByTags, randomIntFromInterval, moveItem };
