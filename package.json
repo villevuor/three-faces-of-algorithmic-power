@@ -5,7 +5,7 @@
   "license": "MIT",
   "proxy": "http://localhost:5000",
   "scripts": {
-    "build": "preact build",
+    "build": "preact build --no-prerender",
     "serve": "sirv build --port 3000 --cors --single",
     "dev": "node server & preact watch --port=3000 --host=localhost",
     "lint": "eslint src"
@@ -24,8 +24,6 @@
     "eslint-config-preact": "^1.1.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.1",
-    "jest": "^24.9.0",
-    "jest-preset-preact": "^1.0.0",
     "preact-cli": "^3.0.0",
     "request": "^2.88.2",
     "sirv-cli": "1.0.3"
