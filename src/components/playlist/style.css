@@ -1,4 +1,5 @@
-.addButton {
+.addButton,
+.savePlaylistButton {
 	height: 40px;
 	padding: 0 15px;
 	background: #005792;
@@ -8,7 +9,7 @@
 	letter-spacing: 1px;
 	font-weight: bold;
 	cursor: pointer;
-	transition: transform 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
 	margin: 2em auto;
 	display: block;
 	clear: both;
@@ -16,6 +17,16 @@
 
 	.addButton:hover {
 		transform: scale(1.05);
+	}
+
+	.savePlaylistButton {
+		background: #fff;
+		color: #005792;
+		margin: 2em 0 0.5em;
+	}
+
+	.savePlaylistButton:hover {
+		background: #ccc;
 	}
 
 .playlist {

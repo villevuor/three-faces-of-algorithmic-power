@@ -6,7 +6,8 @@ class PlayList extends Component {
     super();
 
 		this.state = {
-			playlist: null
+			playlist: null,
+			saved: false,
 		};
   }
 
@@ -23,12 +24,24 @@ class PlayList extends Component {
 		this.props.afterClick();
 	}
 
+	savePlaylist(giveAlert = true) {
+		this.setState({ saved: true });
+		const d = new Date();
+		const storage_name = `playlist_${d.getFullYear()}${(d.getMonth()+1)}${d.getDate()}-${d.getHours()}${d.getMinutes()}${d.getSeconds()}`;
+		localStorage.setItem(storage_name, JSON.stringify(this.state.playlist));
+		if (giveAlert) {
+			alert('Kiitos! Soittolista tallennettu.');
+		}
+	}
+
 	componentDidMount()	{
 		this.setState({ playlist: [] });
 	}
 
 	componentWillUnmount()	{
-		// Todo: save playlist somewhere
+		if (!this.state.saved && this.state.playlist.length > 0) {
+			this.savePlaylist(false);
+		}
 	}
 
 	shouldComponentUpdate(nextProps, nextState)	{
@@ -54,6 +67,11 @@ class PlayList extends Component {
 				{ playlist && playlist.length > 0
 					? playlist.map(track => <Track {...track} />)
 					: <p>Lisäämäsi kappaleet ilmestyvät tänne</p>}
+				<button
+					class={ style.savePlaylistButton }
+					onClick={() => this.savePlaylist()}>
+					Tallenna soittolista
+				</button>
 			</div>
 		</div>;
 	}
