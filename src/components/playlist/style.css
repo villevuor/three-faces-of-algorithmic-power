@@ -38,6 +38,8 @@
 	color: #fff;
 	text-align: left;
 	padding: 5px 20px 15px;
+	max-height: calc(100% - 130px);
+	overflow-y: scroll;
 }
 
 .track {

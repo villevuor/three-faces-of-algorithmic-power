@@ -22,6 +22,9 @@ class PlayList extends Component {
 		const playlist = [...this.state.playlist, trackToAdd];
 		this.setState({ playlist });
 		this.props.afterClick();
+
+		const objDiv = document.getElementById("playListWrapper");
+		objDiv.scrollTop = objDiv.scrollHeight;
 	}
 
 	savePlaylist(giveAlert = true) {
@@ -62,7 +65,7 @@ class PlayList extends Component {
 				onClick={() => this.addSong()}>
 				+ Lisää soittolistalle
 			</button>
-			<div class={ style.playlist }>
+			<div class={ style.playlist } id="playListWrapper">
 				<h3>Soittolistalle tallennetut kappaleet</h3>
 				{ playlist && playlist.length > 0
 					? playlist.map(track => <Track {...track} />)
