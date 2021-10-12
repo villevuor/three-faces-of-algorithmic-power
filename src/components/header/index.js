@@ -20,7 +20,7 @@ const links = () => {
 
 const Header = () => (
 	<header class={style.header}>
-		<img src="../style/music.svg" width="40" height="40" />
+		<img src="../assets/music.svg" width="40" height="40" />
 		<nav>
 			{links().map((url, index) =>
 				<Link activeClassName={style.active} href={url}>Testi {index+1}</Link>)}
