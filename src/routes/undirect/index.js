@@ -23,6 +23,11 @@ class UndirectPower extends Component {
     this.setState({ query: value })
   }
 
+  componentWillUnmount() {
+    this.props.clearSearchResults();
+    this.props.player.pause();
+  }
+
   render({ searchResults, playerState, playSong, player }, { query }) {
     return (
 			<div class={style.undirect}>

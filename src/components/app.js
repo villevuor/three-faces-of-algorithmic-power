@@ -179,7 +179,8 @@ class App extends Component {
 										playerState={playerState}
 										player={player}
 										searchFromAPI={searchFromAPI}
-										searchResults={searchResults} />
+										searchResults={searchResults}
+										clearSearchResults={() => this.setState({ searchResults: [] })} />
 
 									<HiddenPower
 										path="/test-A5Ccg9x"
@@ -187,7 +188,8 @@ class App extends Component {
 										playerState={playerState}
 										player={player}
 										getTracks={getTracks}
-										searchResults={searchResults} />
+										searchResults={searchResults}
+										clearSearchResults={() => this.setState({ searchResults: [] })} />
 
 								</Router>
 							</div>

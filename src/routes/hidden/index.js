@@ -57,6 +57,12 @@ class HiddenPower extends Component {
     }
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timeOut);
+    this.props.clearSearchResults();
+    this.props.player.pause();
+  }
+
   render({ searchResults, playerState, playSong, player }, { selectedTags, loading }) {
     return (
 			<div class={style.hidden}>
