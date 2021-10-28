@@ -29,8 +29,12 @@ class PlayList extends Component {
 
 	savePlaylist(giveAlert = true) {
 		this.setState({ saved: true });
+
+		const pZ = (n) => (n < 10 ? `0${n}` : n);
+
 		const d = new Date();
-		const storage_name = `playlist_${d.getFullYear()}${(d.getMonth()+1)}${d.getDate()}-${d.getHours()}${d.getMinutes()}${d.getSeconds()}`;
+		const storage_name = `playlist_${d.getFullYear()}${(pZ(d.getMonth()+1))}${pZ(d.getDate())}-${pZ(d.getHours())}${pZ(d.getMinutes())}${pZ(d.getSeconds())}`;
+
 		localStorage.setItem(storage_name, JSON.stringify(this.state.playlist));
 		if (giveAlert) {
 			alert('Kiitos! Soittolista tallennettu.');
