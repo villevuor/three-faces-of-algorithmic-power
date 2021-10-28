@@ -8,12 +8,14 @@ const links = () => {
 
 	const o = localStorage.getItem('menu_order');
 
-	const items = ['/test-A5Ccg9x', '/test-SdJPNgT', '/test-24FjShb'];
+	let items = ['/test-SdJPNgT', '/test-24FjShb', '/test-A5Ccg9x']; // 1-2-3
 
-	if (o == 1 || o == 2) moveItem(items, 0, 1); // 2, 1, 3
-	if (o == 3 || o == 4) moveItem(items, 1, 2); // 1, 3, 2
-	if (o == 1 || o == 3) moveItem(items, 0, 2); // 3, 1, 2 or 2, 3, 1
-	if (o == 5) return items.reverse();
+	if (o == 2) items = ['/test-SdJPNgT', '/test-A5Ccg9x', '/test-24FjShb']; // 1-3-2
+	if (o == 3) items = ['/test-24FjShb', '/test-SdJPNgT', '/test-A5Ccg9x']; // 2-1-3
+	if (o == 4) items = ['/test-24FjShb', '/test-A5Ccg9x', '/test-SdJPNgT']; // 2-3-1
+	if (o == 5) items = ['/test-A5Ccg9x', '/test-SdJPNgT', '/test-24FjShb']; // 3-1-2
+
+	if (o == 6) return items.reverse(); // 3-2-1
 
 	return items;
 };
