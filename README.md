@@ -1,3 +1,5 @@
+Interactive tool used in my [master's thesis research](https://urn.fi/URN:NBN:fi:aalto-202203272527)
+
 ``` bash
 # install dependencies
 npm install
